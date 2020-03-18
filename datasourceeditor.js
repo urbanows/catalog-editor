@@ -134,8 +134,8 @@ function clickedExternalJson(e) {
   // Need to go through Github API or else CORS issues. 
   if ($(e.target).data("url")) {
     url = $(e.target).data("url");
-  } else if  (targetname=='test-special') {
-    url = 'https://gist.githubusercontent.com/stevage/08f89468f51822ade8d7/raw/ced603a2dd6c4dd8664751bc45915a45f493dcbf/gistfile1.json';
+  } else if  (targetname=='PADUS') {
+    url = 'https://maps.usgs.gov/map/init/padus.json';
   } else if (targetname == 'ganew') {
     url ='https://api.github.com/repos/NICTA/nationalmap/contents/wwwroot/init/ganew.json?ref=ga-datasource';
   } else if (targetname == 'aremi') {
