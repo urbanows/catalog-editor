@@ -140,7 +140,7 @@ function clickedExternalJson(e) {
     //$("#jsonoutput").trigger("change");
     return;
   } else {
-    url = 'https://maps.usgs.gov/map/init/' + targetname + '.json';
+    url = config.otherCatalogsBaseUrl + targetname + '.json';
   }
 
   $("#sourceurl").val(url);
