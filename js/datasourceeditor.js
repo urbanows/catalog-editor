@@ -133,11 +133,9 @@ function clickedExternalJson(e) {
   if ($(e.target).data("url")) {
     url = $(e.target).data("url");
   } else if (targetname == '(blank)') {
-    //url = 'https://gist.github.com/4092eda0d9b6a54ca839';
     loadedFile({
       catalog: []
     });
-    //$("#jsonoutput").trigger("change");
     return;
   } else {
     url = config.otherCatalogsBaseUrl + targetname + '.json';
@@ -239,19 +237,9 @@ function populateSources() {
     });
     $("#nm-jsons li").click(clickedExternalJson);
     console.log(j);
-    /*
-    if (appendtarget === "#nm-jsons") {
-      $(appendtarget).append('<li>National Data Sets<ul id="nm-jsons-national"></ul></li>');
-      appendtarget = '#nm-jsons-national';
-      loadDataSourceList('https://api.github.com/repos/TerriaJS/NationalMap-Catalog/contents/datasources/00_National_Data_Sets');
-    }
-    */
   };
 
   $("#nm-jsons").html("");
-
-  // for testing, to reduce wasting Github API calls
-  //var source = 'https://gist.githubusercontent.com/stevage/d2aef2fddd7e24e305e5/raw/gistfile1.txt';
 
   var source = 'https://api.github.com/repos'+ config.gitPath+'/contents/';
 
@@ -261,7 +249,7 @@ function populateSources() {
 $("#savejson").click(function(e) {
   function savedGist(j) {
     var raw_url = j.files[Object.keys(j.files)[0]].raw_url;
-    var cleanpreviewurl = 'https://maps.usgs.gov/map/#clean&' + encodeURIComponent(raw_url);
+    var cleanpreviewurl = config.mapPreviewUrl + encodeURIComponent(raw_url);
     $("#loadingmsg").html('<h2>Saved!</h2>' +
       '<p><a target="_blank" href="' + cleanpreviewurl + '">Preview your changes in TerriaMap</a></p>' +
       '<p> GIST with your changes: <a target="_blank" href="' + j.html_url + '">' + j.html_url + '</a></p>');
@@ -270,7 +258,6 @@ $("#savejson").click(function(e) {
       saveTextAs($("#jsonoutput").val(), 'datasource.json');
     });
     console.log(j);
-    //$("#sourceurl").val(
   }
   //e.preventDefault();
   var t = JSON.stringify(editor.getValue(), null, 2);
